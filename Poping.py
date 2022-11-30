@@ -26,6 +26,8 @@ running = True
 #defing the place to make the balloon appear
 x = random.randint(0,Screen_Width-200)
 y = Screen_Height
+#making delay to make the balloon go up slowly
+delay = 5
 while running:
     #Did the user click the window close button?
     for event in pygame.event.get():
@@ -39,4 +41,5 @@ while running:
         x = random.randint(0,Screen_Width-200)
         balloon_to_display = random.choice(balloons) #choose a balloon from different color
     pygame.display.flip()
+    pygame.time.delay(delay)  #making delay
 pygame.quit()
