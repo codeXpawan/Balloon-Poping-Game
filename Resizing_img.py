@@ -10,6 +10,7 @@ def resize(image,scale=0.05):
 blue_balloon = cv.imread("Balloon/Blue_Balloon.png")
 red_balloon = cv.imread("Balloon/Red_Balloon.png")
 green_balloon = cv.imread("Balloon/Green_Balloon.png")
+red_balloon_hit = cv.imread("Balloon/Red_Balloon_hit.png")
 #building the path
 path = "Resized_Balloon"
 if os.path.exists(path):
@@ -19,3 +20,4 @@ os.mkdir(path)
 cv.imwrite("Resized_Balloon/Blue_Balloon.png", resize(blue_balloon))
 cv.imwrite("Resized_Balloon/Red_Balloon.png", resize(red_balloon))
 cv.imwrite("Resized_Balloon/Green_Balloon.png", resize(green_balloon))
+cv.imwrite("Resized_Balloon/Red_Balloon_hit.png", resize(red_balloon_hit))
