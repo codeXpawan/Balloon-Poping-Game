@@ -9,7 +9,7 @@ pygame.init()    #initialize pygame
 
 #defining the screen width and height
 Screen_Width = 1280
-Screen_Height = 620
+Screen_Height = 720
 #set up the window
 screen = pygame.display.set_mode((Screen_Width, Screen_Height))
 #setting the title of the window
@@ -18,8 +18,9 @@ pygame.display.set_caption("Poping Game")
 blue_balloon = pygame.image.load("Resized_Balloon/Blue_Balloon.png")
 red_balloon = pygame.image.load("Resized_Balloon/Red_Balloon.png")
 green_balloon = pygame.image.load("Resized_Balloon/Green_Balloon.png")
+red_balloon_hit = pygame.image.load("Resized_Balloon/Red_Balloon_hit.png")
 #making the list of balloon
-balloons = [red_balloon,blue_balloon,green_balloon]
+balloons = [red_balloon,blue_balloon,green_balloon,red_balloon_hit]
 balloon_to_display = random.choice(balloons) #choose a balloon from different color
 #run until the user asks to quit
 running = True
@@ -41,5 +42,5 @@ while running:
         x = random.randint(0,Screen_Width-200)
         balloon_to_display = random.choice(balloons) #choose a balloon from different color
     pygame.display.flip()
-    pygame.time.delay(delay)  #making delay
+    # pygame.time.delay(delay)  #making delay
 pygame.quit()
