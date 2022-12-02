@@ -1,6 +1,6 @@
 #importing cv2
 import cv2 as cv
-
+import numpy as np
 # blue_balloon = cv.imread("Resized_Balloon/Blue_Balloon.png")
 
 # blur = cv.GaussianBlur(blue_balloon,(5,5),0)
@@ -22,9 +22,24 @@ while video.isOpened():
         print("Cannot receive frame (stream end?). Exiting ...")
         break
     frame = resize(frame)
-    cv.imshow("Frame",frame)
-    canny = cv.Canny(frame,50,150)
+    # cv.imshow("Frame",frame)
+    gray = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
+    canny = cv.Canny(gray,50,150)
+    contours, hierarchies = cv.findContours(canny, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
+    # cnt = contours[0]
+    contours_poly = [None]*len(contours)
+    centers = [None]*len(contours)
+    radius = [None]*len(contours)
+    for i,c in enumerate(contours):
+        contours_poly[i] = cv.approxPolyDP(c, 3, True)
+        centers[i], radius[i] = cv.minEnclosingCircle(contours_poly[i])
+    # print(contours)
+    drawing = np.zeros((canny.shape[0], canny.shape[1], 3), dtype=np.uint8)
+    for i in range(len(contours)):
+        cv.circle(drawing, (int(centers[i][0]), int(centers[i][1])), int(radius[i]), [0,255,0], 2)
     cv.imshow("Canny",canny)
+    cv.imshow("Frame",frame)
+    cv.imshow("Drawing",drawing)
     if cv.waitKey(1) == ord('q'):
         break
 video.release()
