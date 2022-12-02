@@ -34,6 +34,5 @@ cv.imshow("Rectangle",img)
 # mask = cv.inRange(hsv, lower_black, upper_black)
 # masked = cv.bitwise_and(img, img, mask=mask)
 # cv.imshow("Masked",masked)
-cv
 cv.waitKey(0)
 cv.destroyAllWindows()
