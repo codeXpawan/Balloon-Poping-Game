@@ -36,7 +36,7 @@ while running:
             running = False
     screen.fill((255, 255, 255))  #fill the screen with white
     screen.blit(balloon_to_display,(x,y))  #draw the blue balloon
-    y -=1
+    y -=1  #make the balloon go up and can change speed by increasing or decreasing the number
     if y == -400:
         y = Screen_Height
         x = random.randint(0,Screen_Width-200)
