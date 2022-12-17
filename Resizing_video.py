@@ -27,7 +27,7 @@ while video.isOpened():
     gray = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
     blur = cv.GaussianBlur(gray,(7,7),0)
     cv.imshow("Blur",blur)
-    canny = cv.Canny(blur,100,150)
+    canny = cv.Canny(blur,0,250)
     contours, hierarchies  = cv.findContours(canny, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
     cv.imshow("Canny",canny)
     contours_poly = [None]*len(contours)
@@ -41,7 +41,7 @@ while video.isOpened():
         box = cv.boxPoints(boundRect[i])
         box = np.int0(box)
         print(perimeter[i])
-        if perimeter[i]>10:
+        if perimeter[i]>200:
             cv.drawContours(frame,[box],0,(0,0,255),2)
         # cv.rectangle(img, (int(boundRect[i][0]), int(boundRect[i][1])),(int(boundRect[i][0]+boundRect[i][2]), int(boundRect[i][1]+boundRect[i][3])), (0,255,0), 2)
         else:

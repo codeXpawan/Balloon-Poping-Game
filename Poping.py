@@ -18,7 +18,7 @@ pygame.display.set_caption("Poping Game")
 blue_balloon = pygame.image.load("Resized_Balloon/Blue_Balloon.png")
 red_balloon = pygame.image.load("Resized_Balloon/Red_Balloon.png")
 green_balloon = pygame.image.load("Resized_Balloon/Green_Balloon.png")
-red_balloon_hit = pygame.image.load("Resized_Balloon/Red_Balloon_hit.png")
+red_balloon_hit = pygame.image.load("Resized_Balloon/Balloon_hit.png")
 #making the list of balloon
 balloons = [red_balloon,blue_balloon,green_balloon,red_balloon_hit]
 balloon_to_display = random.choice(balloons) #choose a balloon from different color

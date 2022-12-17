@@ -10,8 +10,10 @@ def resize(image,scale=0.05):
 blue_balloon = cv.imread("Balloon/Blue_Balloon.png")
 red_balloon = cv.imread("Balloon/Red_Balloon.png")
 green_balloon = cv.imread("Balloon/Green_Balloon.png")
-red_balloon_hit = cv.imread("Balloon/Red_Balloon_hit.png")
-all_balloon = cv.imread("Balloon/AllBalloon.png")
+balloon_hit = cv.imread("Balloon/Balloonhit.png")
+hit_balloon = cv.imread("Balloon/Hit_Balloon.png")
+mixed = cv.imread("Balloon/mixed.png")
+hitballoon = cv.imread("Balloon/hitBalloon.png")
 #building the path
 path = "Resized_Balloon"
 if os.path.exists(path):
@@ -21,5 +23,7 @@ os.mkdir(path)
 cv.imwrite("Resized_Balloon/Blue_Balloon.png", resize(blue_balloon))
 cv.imwrite("Resized_Balloon/Red_Balloon.png", resize(red_balloon))
 cv.imwrite("Resized_Balloon/Green_Balloon.png", resize(green_balloon))
-cv.imwrite("Resized_Balloon/Red_Balloon_hit.png", resize(red_balloon_hit))
-cv.imwrite("Resized_Balloon/AllBalloon.png", resize(all_balloon,0.75))
+cv.imwrite("Resized_Balloon/Balloon_hit.png", resize(balloon_hit))
+cv.imwrite("Resized_Balloon/mixed.png", resize(mixed))
+cv.imwrite("Resized_Balloon/Hit_Balloon.png", resize(hit_balloon))
+cv.imwrite("Resized_Balloon/hitBalloon.png", resize(hitballoon))
