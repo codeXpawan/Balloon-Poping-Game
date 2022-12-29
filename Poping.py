@@ -5,6 +5,7 @@ import random
 random.seed(5)
 #import cv2 to use opencv
 # import cv2 as cv
+import Resizing_video as rv
 pygame.init()    #initialize pygame
 
 #defining the screen width and height
@@ -25,8 +26,9 @@ balloon_to_display = random.choice(balloons) #choose a balloon from different co
 #run until the user asks to quit
 running = True
 #defing the place to make the balloon appear
-x = random.randint(0,Screen_Width-200)
+x = random.randint(6,1050)
 y = Screen_Height
+# flag = rv.flag
 #making delay to make the balloon go up slowly
 delay = 5
 while running:
@@ -36,11 +38,14 @@ while running:
             running = False
     screen.fill((255, 255, 255))  #fill the screen with white
     screen.blit(balloon_to_display,(x,y))  #draw the blue balloon
-    y -=0.5  #make the balloon go up and can change speed by increasing or decreasing the number
-    if y == -400:
+    y -=1  #make the balloon go up and can change speed by increasing or decreasing the number
+    if y <= -400:
         y = Screen_Height
         x = random.randint(0,Screen_Width-200)
         balloon_to_display = random.choice(balloons) #choose a balloon from different color
     pygame.display.flip()
+    if rv.flag != 0:
+        rv.flag = 0
+        y = -400
     # pygame.time.delay(delay)  #making delay
 pygame.quit()

@@ -1,6 +1,7 @@
 import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
+flag = 0
 top = 200
 bottom = 1000
 left = 100
@@ -59,6 +60,7 @@ while video.isOpened():
                 if sliced_area > 10 and sliced_area < 70:
                     # cv.drawContours(sliced[i], sliced_contours, j, (0,255,0), 3)
                     print("hit")
+                    flag = 1
                     x,y,w,h = cv.boundingRect(sliced_contours[j])
                     cv.rectangle(sliced[i],(x,y),(x+w,y+h),(0,255,0),2)
             cv.imshow("Sliced{}".format(i), sliced[i])
