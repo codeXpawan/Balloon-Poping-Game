@@ -3,8 +3,9 @@
 import pygame
 from pygame import mixer
 import time
-import first_calibration as fc
+import  first_calibration as fc 
 import random
+from multiprocessing import Process
 random.seed(5)
 mixer.init()
 pygame.init()    #initialize pygame
@@ -40,24 +41,28 @@ def balloon_appear():       #defing a function for balloon to appear
     y = Screen_Height
     balloon_to_display = random.choice(balloons) #choose a balloon from different color
 #starting the game
-while running:
-    # fc.opencv()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    score_text = font.render('Score: ' + str(score), True, (0, 0, 0))
-    time_text = font.render('Time: ' + str(int(time.time() - start_time)), True, (0, 0, 0))
-    screen.fill((255, 255, 255))  #fill the screen with white
-    screen.blit(balloon_to_display,(x,y))  #draw the blue balloon
-    screen.blit(score_text, (1130, 4))
-    screen.blit(time_text, (10, 10))
-    y -=1  #make the balloon go up and can change speed by increasing or decreasing the number
-    if y <= -400:
-        balloon_appear()
-    if fc.flag != 0:
-        score += 5
-        y = -400
-        mixer.music.play()
-        fc.flag = 0
-    pygame.display.flip()
-pygame.quit()
+def start():
+    global running, score, start_time, balloon_to_display, x, y
+    while running:
+        # fc.opencv()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        score_text = font.render('Score: ' + str(score), True, (0, 0, 0))
+        time_text = font.render('Time: ' + str(int(time.time() - start_time)), True, (0, 0, 0))
+        screen.fill((255, 255, 255))  #fill the screen with white
+        screen.blit(balloon_to_display,(x,y))  #draw the blue balloon
+        screen.blit(score_text, (1130, 4))
+        screen.blit(time_text, (10, 10))
+        y -=1  #make the balloon go up and can change speed by increasing or decreasing the number
+        if y <= -400:
+            balloon_appear()
+        if fc.flag != 0:
+            score += 5
+            y = -400
+            mixer.music.play()
+            fc.flag = 0
+        pygame.display.flip()
+    pygame.quit()
+Process(target=fc.opencv).start()
+Process(target=start).start()
