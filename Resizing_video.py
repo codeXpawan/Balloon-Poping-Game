@@ -25,6 +25,7 @@ while video.isOpened():
     
     frame = frame[top:bottom,left:right]
     frame = resizing_video(frame)
+    # print(frame.shape)
     cv.imshow("Frame",frame)
     gray_frame = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
     blur_frame = cv.GaussianBlur(gray_frame,(9,9),0)
