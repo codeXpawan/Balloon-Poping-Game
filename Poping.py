@@ -1,13 +1,20 @@
 #import pygame to use pygame
 import pygame
 #import random to use random
+from pygame import mixer
 import random
+import time
 random.seed(5)
+
+start_time = time.time()
 #import cv2 to use opencv
 # import cv2 as cv
-import Resizing_video as rv
+# import Resizing_video as rv
+mixer.init()
+mixer.music.load('Balloon/balloonpop.wav')
 pygame.init()    #initialize pygame
-
+score = 0
+mixer.music.set_volume(0.7)
 #defining the screen width and height
 Screen_Width = 1280
 Screen_Height = 720
@@ -15,6 +22,7 @@ Screen_Height = 720
 screen = pygame.display.set_mode((Screen_Width, Screen_Height))
 #setting the title of the window
 pygame.display.set_caption("Poping Game")
+font = pygame.font.Font('freesansbold.ttf', 32)
 #loading the image of balloon
 blue_balloon = pygame.image.load("Resized_Balloon/Blue_Balloon.png")
 red_balloon = pygame.image.load("Resized_Balloon/Red_Balloon.png")
@@ -36,16 +44,22 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    text1 = font.render('Score: ' + str(score), True, (0, 0, 0))
+    text2 = font.render('Time: ' + str(int(time.time() - start_time)), True, (0, 0, 0))
     screen.fill((255, 255, 255))  #fill the screen with white
     screen.blit(balloon_to_display,(x,y))  #draw the blue balloon
+    screen.blit(text1, (1130, 4))
+    screen.blit(text2, (10, 10))
     y -=1  #make the balloon go up and can change speed by increasing or decreasing the number
     if y <= -400:
         y = Screen_Height
+        score+=1
+        mixer.music.play()
         x = random.randint(0,Screen_Width-200)
         balloon_to_display = random.choice(balloons) #choose a balloon from different color
     pygame.display.flip()
-    if rv.flag != 0:
-        rv.flag = 0
-        y = -400
+    # if rv.flag != 0:
+    #     rv.flag = 0
+    #     y = -400
     # pygame.time.delay(delay)  #making delay
 pygame.quit()
