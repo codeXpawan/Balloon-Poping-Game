@@ -16,10 +16,10 @@ pygame.init()    #initialize pygame
 score = 0
 mixer.music.set_volume(0.7)
 #defining the screen width and height
-Screen_Width = 1280
-Screen_Height = 720
+Screen_Width = 800
+Screen_Height = 570
 #set up the window
-screen = pygame.display.set_mode((Screen_Width, Screen_Height))
+screen = pygame.display.set_mode((Screen_Width, Screen_Height),pygame.RESIZABLE)
 #setting the title of the window
 pygame.display.set_caption("Poping Game")
 font = pygame.font.Font('freesansbold.ttf', 32)
@@ -34,7 +34,7 @@ balloon_to_display = random.choice(balloons) #choose a balloon from different co
 #run until the user asks to quit
 running = True
 #defing the place to make the balloon appear
-x = random.randint(6,1050)
+x = random.randint(6,700)
 y = Screen_Height
 # flag = rv.flag
 #making delay to make the balloon go up slowly
@@ -50,11 +50,11 @@ while running:
     screen.blit(balloon_to_display,(x,y))  #draw the blue balloon
     screen.blit(text1, (1130, 4))
     screen.blit(text2, (10, 10))
-    y -=1  #make the balloon go up and can change speed by increasing or decreasing the number
+    y -=0.3  #make the balloon go up and can change speed by increasing or decreasing the number
     if y <= -400:
         y = Screen_Height
-        score+=1
-        mixer.music.play()
+        score+=0.3
+        # mixer.music.play()
         x = random.randint(0,Screen_Width-200)
         balloon_to_display = random.choice(balloons) #choose a balloon from different color
     pygame.display.flip()
